@@ -1,3 +1,30 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-export default "test";
+const UserSchema = new Schema({
+  first_name: {
+    type: String,
+    maxLength: 100,
+    required: true,
+  },
+  last_name: {
+    type: String,
+    maxLength: 100,
+    required: true,
+  },
+  username: {
+    type: String,
+    maxLength: 100,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["guest", "user", "member", "admin"],
+    required: true,
+  },
+});
+
+export default mongoose.model("User", UserSchema);
