@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <%- include("./nav"); %>
+    <form method="post">
+      <label for="first-name">First Name</label>
+      <input type="text" name="firstName" id="first-name" value=<%=  firstName ? firstName : "" %> />
+      <label for="last-name">Last Name</label>
+      <input type="text" name="lastName" id="last-name" value=<%= lastName ? lastName : "" %> />
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" value=<%= username ? username : "" %> />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" />
+      <button>Sign up</button>
+      <% errors.forEach((error) => { %>
+        <%- `<p>${error.msg}</p>` %>
+      <% }); %>
+    </form>
+  </body>
+</html>

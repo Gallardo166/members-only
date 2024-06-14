@@ -1,6 +1,10 @@
 import { Strategy as LocalStrategy } from "passport-local";
 import User from "../models/user.js";
 
+const validPassword = function() {
+  return true;
+};
+
 const passportConfig = function(passport) {
 
   const verifyCallback = async function(username, password, done) {
