@@ -9,14 +9,14 @@
     <%- include("./nav"); %>
     <form method="post">
       <label for="username">Username</label>
-      <input type="text" name="username" id="username" value="<%= username%>" />
+      <input type="text" name="username" id="username" value="<%= locals.username ? username : '' %>" />
       <label for="password">Password</label>
       <input type="password" name="password" id="password" />
       <label for="confirm-password">Confirm Password</label>
       <input type="password" name="confirmPassword" id="confirm-password" />
       <button>Log In</button>
     </form>
-    <% if (errors) {%>
+    <% if (locals.errors) {%>
       <% errors.forEach((error) => { %>
         <%- `<p>${error.msg}</p>` %>
       <%});%>

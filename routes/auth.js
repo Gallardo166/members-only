@@ -1,6 +1,11 @@
-const isAuth = function(req, res, next) {
-  if (req.isAuthenticated()) next();
+const isUser = function(req, res, next) {
+  if (req.isAuthenticated() && req.user.status === "user") next();
   res.status(401).json({ message: "You are not a user." })
 };
 
-export { isAuth };
+const isMember = function(req, res, next) {
+  if (req.isAuthenticated() && req.user.status === "member") next();
+  res.status(401).json({ message: "You are not a member." });
+};
+
+export { isUser, isMember };

@@ -1,8 +1,20 @@
 <nav>
-  <button>
-    <a href="/sign-up">Sign up</a>
-  </button>
-  <button>
-    <a href="/login">Log in</a>
-  </button>
+  <% if (!locals.userStatus) { %>
+    <button>
+      <a href="/sign-up">Sign up</a>
+    </button>
+    <button>
+      <a href="/login">Log in</a>
+    </button>
+  <%}%>
+  <% if (locals.userStatus === "user") { %>
+    <button>
+      <a href="/user/become-member">Become a member</a>
+    </button>
+  <%}%>
+  <% if (locals.userStatus) { %>
+    <button>
+      <a href="/logout">Log out</a>
+    </button>
+  <%}%>
 </nav>

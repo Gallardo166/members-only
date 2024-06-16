@@ -52,7 +52,7 @@ const signUp = [
         last_name: req.body.lastName,
         username: req.body.username,
         password: hashedPassword,
-        status: "user",
+        userStatus: "user",
       });
       await user.save();
       res.redirect("/login")
@@ -101,7 +101,7 @@ const login = [
 
   passport.authenticate("local", {
     failureRedirect: "/login",
-    successRedirect: "/user",
+    successRedirect: "/",
   }),
 ]
 

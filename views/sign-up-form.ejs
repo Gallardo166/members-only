@@ -9,16 +9,16 @@
     <%- include("./nav"); %>
     <form method="post">
       <label for="first-name">First Name</label>
-      <input type="text" name="firstName" id="first-name" value="<%= firstName %>" />
+      <input type="text" name="firstName" id="first-name" value="<%= locals.firstName ? firstName: '' %>" />
       <label for="last-name">Last Name</label>
-      <input type="text" name="lastName" id="last-name" value="<%= lastName%>" />
+      <input type="text" name="lastName" id="last-name" value="<%= locals.lastName ? lastName : '' %>" />
       <label for="username">Username</label>
-      <input type="text" name="username" id="username" value="<%= username%>" />
+      <input type="text" name="username" id="username" value="<%= locals.username ? username : '' %>" />
       <label for="password">Password</label>
       <input type="password" name="password" id="password" />
       <button>Sign up</button>
     </form>
-    <% if (errors) {%>
+    <% if (locals.errors) {%>
       <% errors.forEach((error) => { %>
         <%- `<p>${error.msg}</p>` %>
       <%});%>
