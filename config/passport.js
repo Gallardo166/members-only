@@ -1,18 +1,15 @@
 import { Strategy as LocalStrategy } from "passport-local";
 import User from "../models/user.js";
-
-const validPassword = function() {
-  return true;
-};
+import bcrypt from "bcryptjs";
 
 const passportConfig = function(passport) {
 
   const verifyCallback = async function(username, password, done) {
     try {
       const user = await User.findOne({ username });
-      if (!user) return done(null, false);
-      const match = validPassword(password, user.hash, user.salt);
-      if (!match) return done(null, false);
+      if (!user) return done(null, false, { message: "Incorrect username or password." });
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) return done(null, false, { message: "Incorrect username or password." });
       return done(null, user);
     } catch (err) {
       return done(err);

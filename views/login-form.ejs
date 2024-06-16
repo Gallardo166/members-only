@@ -3,20 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Log In</title>
   </head>
   <body>
     <%- include("./nav"); %>
     <form method="post">
-      <label for="first-name">First Name</label>
-      <input type="text" name="firstName" id="first-name" value="<%= firstName %>" />
-      <label for="last-name">Last Name</label>
-      <input type="text" name="lastName" id="last-name" value="<%= lastName%>" />
       <label for="username">Username</label>
       <input type="text" name="username" id="username" value="<%= username%>" />
       <label for="password">Password</label>
       <input type="password" name="password" id="password" />
-      <button>Sign up</button>
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" name="confirmPassword" id="confirm-password" />
+      <button>Log In</button>
     </form>
     <% if (errors) {%>
       <% errors.forEach((error) => { %>
