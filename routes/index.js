@@ -1,16 +1,20 @@
 import express from "express";
 import Message from "../models/message.js";
-import { signUp, login } from "../controllers/guestController.js";
+import { signUp, login, adminSignUp } from "../controllers/guestController.js";
 
 const router = express.Router();
 
 router.get("/", async function(req, res, next) {
-  if (req.user && req.user.status === "user") {
+  if (req.isAuthenticated() && req.user.status === "user") {
     res.redirect("/user");
     return;
   }
-  if (req.user && req.user.status === "member") {
+  if (req.isAuthenticated() && req.user.status === "member") {
     res.redirect("/member");
+    return;
+  }
+  if (req.isAuthenticated() && req.user.status === "admin") {
+    res.redirect("/admin");
     return;
   }
   res.render("index", {
@@ -36,5 +40,11 @@ router.get("/logout", (req, res, next) => {
   });
   res.redirect("/");
 });
+
+router.get("/admin-sign-up", (req, res, next) => {
+  res.render("admin-sign-up-form");
+});
+
+router.post("/admin-sign-up", adminSignUp);
 
 export default router;

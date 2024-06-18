@@ -1,28 +1,6 @@
-import User from "../models/user.js";
 import Message from "../models/message.js";
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
-import passport from "passport";
-
-const becomeMember = [
-  body("passcode")
-    .custom((value) => {
-      if (value !== process.env.PASSCODE) throw new Error("Passcode is incorrect.");
-      return true;
-    })
-    .escape(),
-  
-  asyncHandler(async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.render("become-member", {
-        errors: errors.array(),
-      });
-    }
-    await User.updateOne( { _id: req.user._id }, { $set: { status: "member" } });
-    res.redirect("/member");
-  }),
-];
 
 const createMessage = [
   body("title")
@@ -52,8 +30,13 @@ const createMessage = [
       date: Date.now(),
     });
     await message.save();
-    res.redirect("/user");
+    res.redirect("/admin");
   }),
 ];
 
-export { becomeMember, createMessage };
+const deleteMessage = asyncHandler(async (req, res, next) => {
+  await Message.findByIdAndDelete(req.params.id);
+  res.redirect("/admin");
+});
+
+export { createMessage, deleteMessage }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Only</title>
+  </head>
+  <body>
+    <%- include("./nav"); %>
+    <p>Hello, <%= user.username %></p>
+    <%- include("./message-list-admin") %>
+    <a href="/admin/create-message">
+      <button>Create new message</button>
+    </a>
+  </body>
+</html>
