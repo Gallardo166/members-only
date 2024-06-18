@@ -77,7 +77,7 @@ const login = [
     .isLength({ max: 100 }).withMessage("Username must not exceed 100 characters.")
     .custom(async (value) => {
       const existingUser = await User.findOne({ username: value }).exec();
-      if (!existingUser) throw new Error("User not found.")
+      if (value && !existingUser) throw new Error("User not found.")
     })
     .escape(),
   body("password")
