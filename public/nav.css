@@ -58,6 +58,7 @@ button {
   padding: 7px 9px;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .sign-up-link > button {

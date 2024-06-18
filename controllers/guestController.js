@@ -46,11 +46,22 @@ const signUp = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    if (!errors.isEmpty() && errors.array().filter(error => error.path === "password" || error.path === "confirmPassword").length > 0) {
+      res.render("sign-up-form", {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        errors: errors.array(),
+      })
+      return;
+    }
     if (!errors.isEmpty()) {
       res.render("sign-up-form", {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
+        password: req.body.password,
+        confirmPassword: req.body.confirmPassword,
         errors: errors.array(),
       })
       return;
@@ -158,11 +169,22 @@ const adminSignUp = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    if (!errors.isEmpty() && errors.array().filter(error => error.path === "password" || error.path === "confirmPassword").length > 0) {
+      res.render("admin-sign-up-form", {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        errors: errors.array(),
+      });
+      return;
+    }
     if (!errors.isEmpty()) {
       res.render("admin-sign-up-form", {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
+        password: req.body.password,
+        confirmPassword: req.body.confirmPassword,
         errors: errors.array(),
       });
       return;

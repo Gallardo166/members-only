@@ -47,7 +47,7 @@
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" />
+        <input type="password" name="password" id="password" value="<%= locals.password ? password : '' %>" />
         <% if (locals.errors) {%>
           <% errors.forEach((error) => { %>
             <% if (error.path === "password") { %>
@@ -58,7 +58,7 @@
       </div>
       <div>
         <label for="confirm-password">Confirm Password</label>
-        <input type="password" name="confirmPassword" id="confirm-password" />
+        <input type="password" name="confirmPassword" id="confirm-password" value="<%= locals.confirmPassword ? confirmPassword : '' %>" />
         <% if (locals.errors) {%>
           <% errors.forEach((error) => { %>
             <% if (error.path === "confirmPassword") { %>
