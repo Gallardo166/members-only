@@ -27,7 +27,7 @@
 }
 
 nav {
-  padding: 18px;
+  padding: 6px 18px 12px 18px;
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(2, 1fr);
   row-gap: 8px;
@@ -52,6 +52,7 @@ a {
   font-weight: 800;
   color: #134e4a;
   justify-self: center;
+  align-self: ;
 }
 
 button {
@@ -93,6 +94,7 @@ button {
 
 @media only screen and (min-width: 600px) {
   nav {
+    padding: 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
