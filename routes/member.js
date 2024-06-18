@@ -8,7 +8,7 @@ router.get("/", isMember, async function(req, res, next) {
   res.render("member", {
     user: req.user,
     userStatus: "member",
-    messages: await Message.find({}).populate("user").exec(),
+    messages: await Message.find({}).sort({ date: -1 }).populate("user").exec(),
   });
 });
 

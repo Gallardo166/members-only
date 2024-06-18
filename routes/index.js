@@ -18,7 +18,7 @@ router.get("/", async function(req, res, next) {
     return;
   }
   res.render("index", {
-    messages: await Message.find({}).exec(),
+    messages: await Message.find({}).sort({ date: -1 }).exec(),
   });
 });
 

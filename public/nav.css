@@ -27,7 +27,7 @@
 }
 
 nav {
-  padding: 18px;
+  padding: 12px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,4 +85,10 @@ button {
   background-color: #e24444;
   border: 2px solid #e24444;
   color: #d1fae5;
+}
+
+@media only screen and (min-width: 600px) {
+  nav {
+    padding: 18px;
+  }
 }

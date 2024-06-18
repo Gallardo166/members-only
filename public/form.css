@@ -64,8 +64,8 @@ input, textarea {
 }
 
 p.error {
+  margin: 6px 0;
   font-size: 0.8rem;
-  line-height: 5px;
   color: #e24444;
 }
 

@@ -8,7 +8,7 @@ router.get("/", isUser, async function(req, res, next) {
   res.render("user", { 
     user: req.user,
     userStatus: "user",
-    messages: await Message.find({}).exec(),
+    messages: await Message.find({}).sort({ date: -1 }).exec(),
   });
 });
 
