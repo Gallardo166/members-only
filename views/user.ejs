@@ -8,5 +8,9 @@
   <body>
     <%- include("./nav"); %>
     <p>Hello, <%= user.username %></p>
+    <%- include("./message-list") %>
+    <a href="/user/create-message">
+      <button>Create new message</button>
+    </a>
   </body>
 </html>

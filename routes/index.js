@@ -1,12 +1,21 @@
 import express from "express";
+import Message from "../models/message.js";
 import { signUp, login } from "../controllers/guestController.js";
 
 const router = express.Router();
 
-router.get("/", function(req, res, next) {
-  if (req.user && req.user.status === "user") res.redirect("/user");
-  if (req.user && req.user.status === "member") res.redirect("/member");
-  res.render("index");
+router.get("/", async function(req, res, next) {
+  if (req.user && req.user.status === "user") {
+    res.redirect("/user");
+    return;
+  }
+  if (req.user && req.user.status === "member") {
+    res.redirect("/member");
+    return;
+  }
+  res.render("index", {
+    messages: await Message.find({}).exec(),
+  });
 });
 
 router.get("/sign-up", function(req, res, next) {
