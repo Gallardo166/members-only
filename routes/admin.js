@@ -12,7 +12,7 @@ router.get("/", isAdmin, async function (req, res, next) {
   });
 });
 
-router.get("/create-message", isAdmin, async function (req, res, next) {
+router.get("/create-message", isAdmin, function (req, res, next) {
   res.render("create-message-form", {
     userStatus: "admin",
   });
@@ -23,6 +23,7 @@ router.post("/create-message", createMessage);
 router.get("/:id/delete-message", isAdmin, async function (req, res, next) {
   res.render("delete-message", {
     userStatus: "admin",
+    message: await Message.findById(req.params.id).populate("user").exec(),
   });
 });
 

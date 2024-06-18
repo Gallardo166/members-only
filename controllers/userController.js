@@ -17,7 +17,9 @@ const becomeMember = [
     if (!errors.isEmpty()) {
       res.render("become-member", {
         errors: errors.array(),
+        userStatus: "user",
       });
+      return;
     }
     await User.updateOne( { _id: req.user._id }, { $set: { status: "member" } });
     res.redirect("/member");

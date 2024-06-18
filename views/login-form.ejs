@@ -3,21 +3,38 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="/nav.css">
     <title>Log In</title>
   </head>
   <body>
     <%- include("./nav"); %>
-    <form method="post">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" value="<%= locals.username ? username : '' %>" />
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
-      <button>Log In</button>
-    </form>
-    <% if (locals.errors) {%>
-      <% errors.forEach((error) => { %>
-        <%- `<p>${error.msg}</p>` %>
-      <%});%>
-    <%}%>
+    <main>
+      <form method="post">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" value="<%= locals.username ? username : '' %>" />
+          <% if (locals.errors) {%>
+            <% errors.forEach((error) => { %>
+              <% if (error.path === "username") { %>
+                <%- `<p class="error">${error.msg}</p>` %>
+              <%}%>
+            <%});%>
+          <%}%>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+          <% if (locals.errors) {%>
+            <% errors.forEach((error) => { %>
+              <% if (error.path === "password") { %>
+                <%- `<p class="error">${error.msg}</p>` %>
+              <%}%>
+            <%});%>
+          <%}%>
+        </div>
+        <button>Log In</button>
+      </form>
+    </main>
   </body>
 </html>

@@ -3,14 +3,21 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/message-list.css">
+    <link rel="stylesheet" href="/user.css">
+    <link rel="stylesheet" href="/nav.css">
     <title>Members Only</title>
   </head>
   <body>
     <%- include("./nav"); %>
-    <p>Hello, <%= user.username %></p>
-    <%- include("./message-list-admin") %>
-    <a href="/admin/create-message">
-      <button>Create new message</button>
-    </a>
+    <main>
+      <div class="top">
+        <p class="greeting">Hello, <span class="username"><%= user.username %></span></p>
+        <a href="/admin/create-message" class="create-message-link">
+          <button>+ write a message</button>
+        </a>
+      </div>
+      <%- include("./message-list") %>
+    </main>
   </body>
 </html>

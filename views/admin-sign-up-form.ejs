@@ -3,29 +3,82 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="/nav.css">
     <title>Sign Up</title>
   </head>
   <body>
     <%- include("./nav"); %>
     <form method="post">
-      <label for="first-name">First Name</label>
-      <input type="text" name="firstName" id="first-name" value="<%= locals.firstName ? firstName: '' %>" />
-      <label for="last-name">Last Name</label>
-      <input type="text" name="lastName" id="last-name" value="<%= locals.lastName ? lastName : '' %>" />
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" value="<%= locals.username ? username : '' %>" />
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
-      <label for="confirm-password">Confirm Password</label>
-      <input type="password" name="confirmPassword" id="confirm-password" />
-      <label for="passcode">Admin Passcode</label>
-      <input type="password" name="passcode" id="passcode" />
+      <div class="name">
+        <div>
+          <label for="first-name">First Name</label>
+          <input type="text" name="firstName" id="first-name" value="<%= locals.firstName ? firstName: '' %>" />
+          <% if (locals.errors) {%>
+            <% errors.forEach((error) => { %>
+              <% if (error.path === "firstName") { %>
+                <%- `<p class="error">${error.msg}</p>` %>
+              <%}%>
+            <%});%>
+          <%}%>
+        </div>
+        <div>
+          <label for="last-name">Last Name</label>
+          <input type="text" name="lastName" id="last-name" value="<%= locals.lastName ? lastName : '' %>" />
+          <% if (locals.errors) {%>
+            <% errors.forEach((error) => { %>
+              <% if (error.path === "lastName") { %>
+                <%- `<p class="error">${error.msg}</p>` %>
+              <%}%>
+            <%});%>
+          <%}%>
+        </div>
+      </div>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" value="<%= locals.username ? username : '' %>" />
+        <% if (locals.errors) {%>
+          <% errors.forEach((error) => { %>
+            <% if (error.path === "username") { %>
+              <%- `<p class="error">${error.msg}</p>` %>
+            <%}%>
+          <%});%>
+        <%}%>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <% if (locals.errors) {%>
+          <% errors.forEach((error) => { %>
+            <% if (error.path === "password") { %>
+              <%- `<p class="error">${error.msg}</p>` %>
+            <%}%>
+          <%});%>
+        <%}%>
+      </div>
+      <div>
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" name="confirmPassword" id="confirm-password" />
+        <% if (locals.errors) {%>
+          <% errors.forEach((error) => { %>
+            <% if (error.path === "confirmPassword") { %>
+              <%- `<p class="error">${error.msg}</p>` %>
+            <%}%>
+          <%});%>
+        <%}%>
+      </div>
+      <div>
+        <label for="passcode">Admin Passcode</label>
+        <input type="password" name="passcode" id="passcode" />
+        <% if (locals.errors) {%>
+          <% errors.forEach((error) => { %>
+            <% if (error.path === "passcode") { %>
+              <%- `<p class="error">${error.msg}</p>` %>
+            <%}%>
+          <%});%>
+        <%}%>
+      </div>
       <button>Sign up</button>
     </form>
-    <% if (locals.errors) {%>
-      <% errors.forEach((error) => { %>
-        <%- `<p>${error.msg}</p>` %>
-      <%});%>
-    <%}%>
   </body>
 </html>

@@ -75,14 +75,20 @@ const login = [
     .trim()
     .isLength({ min: 1 }).withMessage("Username must not be empty.")
     .isLength({ max: 100 }).withMessage("Username must not exceed 100 characters.")
+    .custom(async (value) => {
+      const existingUser = await User.findOne({ username: value }).exec();
+      if (!existingUser) throw new Error("User not found.")
+    })
     .escape(),
   body("password")
     .isLength({ min: 1 }).withMessage("Password must not be empty.")
-    .isLength({ min: 8 }).withMessage("Password must be at least 8 characters.")
-    .matches(/^(?=.*[a-z]).+$/).withMessage("Password must have at least one lowercase character.")
-    .matches(/^(?=.*[A-Z]).+$/).withMessage("Password must have at least one uppercase character.")
-    .matches(/^(?=.*[0-9]).+$/).withMessage("Password must contain at least one digit.")
-    .matches(/^(?=.*?[#?!@$%^&*-]).+$/).withMessage("Password must contain at least one special character.")
+    .custom(async(value, { req }) => {
+      const existingUser = await User.findOne({ username: req.body.username }).exec();
+      if (value && existingUser) {
+        const match = await bcrypt.compare(value, existingUser.password);
+        if (!match) throw new Error("Incorrect username or password.")
+      }
+    })
     .escape(),
   
   asyncHandler(async (req, res, next) => {
@@ -120,7 +126,7 @@ const adminSignUp = [
     .isLength({ min: 1 }).withMessage("Username must not be empty.")
     .isLength({ max: 100 }).withMessage("Username must not exceed 100 characters.")
     .custom(async (value) => {
-      const existingUser = await User.findOne({ username: value });
+      const existingUser = await User.findOne({ username: value }).exec();
       if (existingUser) throw new Error("Sorry, this username is taken!");
     })
     .escape(),

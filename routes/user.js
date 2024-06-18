@@ -13,7 +13,9 @@ router.get("/", isUser, async function(req, res, next) {
 });
 
 router.get("/become-member", isUser, function(req, res, next) {
-  res.render("become-member");
+  res.render("become-member", {
+    userStatus: "user",
+  });
 });
 
 router.post("/become-member", becomeMember);

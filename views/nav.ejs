@@ -1,22 +1,27 @@
 <nav>
+  <a href="/" class="home-link">
+    Members Only
+  </a>
   <% if (!locals.userStatus) { %>
-    <a href="/sign-up">
-      <button>Sign up</button>
+    <a href="/admin-sign-up" class="admin-sign-up-link">
+      <button>Register as Admin</button>
     </a>
-    <a href="/login">
-      <button>Log in</button>
-    </a>
-    <a href="/admin-sign-up">
-      <button>Admin Sign Up</button>
-    </a>
+    <div class="right">
+      <a href="/sign-up" class="sign-up-link">
+        <button>Sign up</button>
+      </a>
+      <a href="/login" class="login-link">
+        <button>Log in</button>
+      </a>
+    </div>
   <%}%>
   <% if (locals.userStatus === "user") { %>
-    <a href="/user/become-member">
+    <a href="/user/become-member" class="become-member-link">
       <button>Become a member</button>
     </a>
   <%}%>
   <% if (locals.userStatus) { %>
-    <a href="/logout">
+    <a href="/logout" class="logout-link">
       <button>Log out</button>
     </a>
   <%}%>

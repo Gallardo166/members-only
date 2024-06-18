@@ -1,0 +1,88 @@
+@font-face {
+  font-family: worksans;
+  src: url(fonts/WorkSans-VariableFont_wght.ttf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: worksans;
+  src: url(fonts/WorkSans-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: worksans;
+  src: url(fonts/WorkSans-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: worksans;
+  src: url(fonts/WorkSans-Bold.ttf);
+  font-weight: 800;
+}
+
+* {
+  font-family: worksans;
+}
+
+nav {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.right {
+  display: flex;
+  gap: 4px;
+}
+
+.home-link {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #134e4a;
+}
+
+button {
+  padding: 7px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sign-up-link > button {
+  background-color: transparent;
+  border: 2px solid #10b981;
+  color: #10b981;
+}
+
+.login-link > button {
+  background-color: #11a372;
+  border: 2px solid #11a372;
+  color: #d1fae5;
+}
+
+.admin-sign-up-link > button {
+  background-color: #4f7381;
+  border: 2px solid #4f7381;
+  color: #d1fae5;
+}
+
+.become-member-link > button {
+  padding: 9px;
+  background: linear-gradient(145deg, #0d9488, #0891b2, #0284c7, #2563eb, #4f46e5, #7c3aed);
+  border: none;
+  color: #d1fae5;
+}
+
+.logout-link > button {
+  background-color: #e24444;
+  border: 2px solid #e24444;
+  color: #d1fae5;
+}

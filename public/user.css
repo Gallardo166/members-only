@@ -1,0 +1,25 @@
+.top {
+  margin: 16px 0;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+span.username {
+  font-weight: 500;
+}
+
+.create-message-link > button {
+  background-color: #7079cd;
+  border: none;
+  font-size: 0.9rem;
+  color:aliceblue
+}
+
+.delete-message-link > button {
+  background-color: transparent;
+  border: 2px solid #e24444;
+  color: #e24444;
+  font-weight: 500;
+}

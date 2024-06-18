@@ -1,4 +1,17 @@
-<% messages.forEach((message) => { %>
-  <%- `<h2>${message.title}</h2>` %>
-  <%- `<p>${message.body}</p>` %>
+<% messages.forEach((message, index) => { %>
+  <%- `<div class="message-container">` %>
+  <% if (!locals.userStatus || userStatus === "user") { %>
+    <%- `<p class="user">Anonymous</p>` %>
+  <% } else { %>
+    <%- `<p class="user">${message.user.username}, ${message.days_passed}</p>` %>
+  <%}%>
+  <%- `<h2 class="title">${message.title}</h2>` %>
+  <%- `<p class="body">${message.body}</p>` %>
+  <% if (locals.userStatus && userStatus === "admin") { %>
+    <%- `<a href="/admin/${message._id}/delete-message" class="delete-message-link"><button>Delete message</button></a>` %>
+  <%}%>
+  <%- `</div>` %>
+  <% if (index !== messages.length - 1) { %>
+    <%- `<hr>` %>
+  <%}%>
 <%});%>
