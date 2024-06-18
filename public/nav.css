@@ -27,10 +27,10 @@
 }
 
 nav {
-  padding: 12px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 18px;
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  row-gap: 8px;
   border-bottom: 1px solid black;
 }
 
@@ -42,12 +42,16 @@ a {
 .right {
   display: flex;
   gap: 4px;
+  grid-area: 2 / 2 / span 1 / span 1;
+  justify-self: end;
 }
 
 .home-link {
-  font-size: 1.3rem;
+  grid-area: 1 / 1 / span 1 / span 2;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #134e4a;
+  justify-self: center;
 }
 
 button {
@@ -89,6 +93,8 @@ button {
 
 @media only screen and (min-width: 600px) {
   nav {
-    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
